@@ -28,11 +28,7 @@ end
 
 class Product < ActiveRecord::Base
   belongs_to :category
-  validates_associated :category, :if => :false_method
-
-  def false_method
-    false
-  end
+  validates_associated :category, :if => Proc.new { false }
 end
 
 class Category < ActiveRecord::Base
